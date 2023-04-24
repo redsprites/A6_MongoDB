@@ -1,9 +1,9 @@
 ### GET REQUEST
-GET http://localhost:8080/lfu4vuri0.73zex587yxy
+GET http://localhost:8080/blogs/6441b89cf904c48614af065c
 
 
 ### POST REQUEST
-POST http://localhost:8080
+POST http://localhost:8080/blogs/
 content-type: application/json
 
 {
@@ -13,7 +13,7 @@ content-type: application/json
 
 
 ### PUT REQUEST
-PUT http://localhost:8080/lfybtt1z0.2gaur519tdi
+PUT http://localhost:8080/blogs/lfybtt1z0.2gaur519tdi
 content-type: application/json
 
 {
@@ -22,4 +22,4 @@ content-type: application/json
 }
 
 ### DELETE REQUEST
-DELETE http://localhost:8080/lg00okty0.jlagv6xyeha
+DELETE http://localhost:8080/blogs/lg00okty0.jlagv6xyeha

@@ -1,38 +1,53 @@
-const GET =require('./lib/get.js');
-const POST=require('./lib/post.js');
-const PUT=require('./lib/put.js');
-const DELETE=require('./lib/delete.js');
-const http=require('http');
-const server=http.createServer((req,res)=>{
-	  // Set CORS headers
-	  res.setHeader('Access-Control-Allow-Origin', '*');
-	  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-	  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-});
- var port = 8080
-server.listen(port, () => {
-	console.log('Server started on port', port);
-  });
+const express = require('express');
+const app = express();
+const cors = require('cors');
+const GET = require('./lib/get.js');
+const POST = require('./lib/post.js');
+const PUT = require('./lib/put.js');
+const DELETE = require('./lib/delete.js');
+const client = require('./lib/mongo.js');
 
-server.on('request',async(req,res)=>{
-	console.log(req.method)
-	switch (req.method) {
-		case "POST":
-		  POST(req, res);
-		  break;
-		case "PUT":
-		  PUT(req, res);
-		  break;
-		case "GET":
-		  GET(req, res);
-		  break;
-		case "DELETE":
-		  DELETE(req, res);
-		  break;
-		default:
-		  res.statusCode = 405;
-		  res.end("Method Not Allowed");
-	  }	  	  	  
+app.use(cors());
+app.use(express.json());
+
+const port = 8080;
+app.listen(port, () => {
+  console.log('Server started on port', port);
 });
 
+client.connect(err => {
+  if (err) {
+    console.error('Error connecting to MongoDB:', err);
+    return;
+  }
+  console.log('Connected to MongoDB');
+});
 
+function getCollectionFromUrl(url) {
+  if (url.startsWith('/users/')) {
+    return 'users';
+  } else if (url.startsWith('/blogs/')) {
+    return 'blogs';
+  } else if (url.startsWith('/comments/')) {
+    return 'comments';
+  } else {
+    return null;
+  }
+}
+
+app.all('*', (req, res, next) => {
+  const collection = getCollectionFromUrl(req.url);
+  
+  if (!collection) {
+    res.status(400).json({ error: 'Invalid URL' });
+    return;
+  }
+
+  req.collection = collection;
+  next();
+});
+
+app.post('*', (req, res) => POST(req, res, req.collection));
+app.put('*', (req, res) => PUT(req, res, req.collection));
+app.get('*', (req, res) => GET(req, res, req.collection));
+app.delete('*', (req, res) => DELETE(req, res, req.collection));
