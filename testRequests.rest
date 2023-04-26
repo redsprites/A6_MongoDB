@@ -22,4 +22,4 @@ content-type: application/json
 }
 
 ### DELETE REQUEST
-DELETE http://localhost:8080/blogs/lg00okty0.jlagv6xyehah
+DELETE http://localhost:8080/blogs/lg00okty0.jlagv6xyeha
