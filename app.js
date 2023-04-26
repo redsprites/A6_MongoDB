@@ -30,10 +30,12 @@ function getCollectionFromUrl(url) {
     return 'blogs';
   } else if (url.startsWith('/comments/')) {
     return 'comments';
-  } else {
+  } 
+  else {
     return null;
   }
 }
+
 
 app.get('/users/:username',(req,res,next)=>{
 
