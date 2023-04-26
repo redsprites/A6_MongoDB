@@ -13,12 +13,12 @@ content-type: application/json
 
 
 ### PUT REQUEST
-PUT http://localhost:8080/blogs/lfybtt1z0.2gaur519tdi
+PUT http://localhost:8080/blogs/6445cf6972601c03035c28e5
 content-type: application/json
 
 {
-	"hello":"world",
-  "Hi":" You"
+	"test": "world",
+  "test_1": "You"
 }
 
 ### DELETE REQUEST
