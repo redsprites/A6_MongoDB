@@ -35,6 +35,10 @@ function getCollectionFromUrl(url) {
   }
 }
 
+app.get('/users/:username',(req,res,next)=>{
+
+});
+
 app.all('*', (req, res, next) => {
   const collection = getCollectionFromUrl(req.url);
   
