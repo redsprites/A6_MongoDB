@@ -1,22 +1,15 @@
 ### GET REQUEST
-GET http://localhost:8080/api/
+GET http://localhost:8080/api/blogs/644201caa5edf12f5ba55249
 
 
 ### POST REQUEST
-POST http://localhost:8080/api/blogs/
+POST http://localhost:8080/api/auth/signin
 Content-Type: application/json
-Authorization: Bearer yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDRkYzVjNjFmMDBiMzk3Mzg1YjkxNDkiLCJpYXQiOjE2ODI4MjgyOTYsImV4cCI6MTY4NjQyODI5Nn0.7uEnrNTmsOXG6U2WQtCCCf6JJqpGhwX0h33Bl_0yQ4w
 
 {
-  "title": "My First Blog Post",
-  "content": "This is the content of my first blog post."
+  "email": "john.dee@example.com",
+  "password": "password123"
 }
-
-
-# {
-#   "email": "john.dee@example.com",
-#   "password": "password123"
-# }
 
 # {
 #   "first_name": "John",
